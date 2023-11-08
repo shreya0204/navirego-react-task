@@ -2,12 +2,16 @@
 
 This is a simple React app that displays max 30 letters for each active checkboxes. The app is built using React, TypeScript and Tailwind. The app is responsive and works on mobile devices.
 
+## Preview
+![image](https://github.com/shreya0204/navirego-react-task/assets/78657883/8421f72e-f4f3-47da-8662-da5cd4edb09a)
+
 ## Features
 
 - [x] The app only displays text when the checkbox is checked
 - [x] The app displays max 30 letters for each active checkboxes
 - [x] The app makes api calls after every 2 seconds.
 - [x] The app is responsive and works on mobile devices
+- [x] The app handles failed api, and doesn't throw any error on the web page
 
 ## Optimizations and Improvements
 

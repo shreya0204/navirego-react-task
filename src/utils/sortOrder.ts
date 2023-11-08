@@ -1,7 +1,4 @@
-type CheckBoxState = {
-  checked: boolean;
-  order: number | null;
-};
+import { CheckBoxState } from '../hooks/useCheckBoxState';
 
 // This sorts out the order in which the checkboxes are checked
 export const getSortedActiveCheckboxes = (checkboxStates: CheckBoxState[]) => {

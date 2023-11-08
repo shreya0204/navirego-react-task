@@ -1,4 +1,14 @@
-const CheckBoxes = ({ isCheckBoxChecked, onCheckBoxChange }: any) => {
+import { CheckBoxState } from '../hooks/useCheckBoxState';
+
+interface CheckBoxesProps {
+  isCheckBoxChecked: CheckBoxState[];
+  onCheckBoxChange: (index: number) => void;
+}
+
+const CheckBoxes: React.FC<CheckBoxesProps> = ({
+  isCheckBoxChecked,
+  onCheckBoxChange,
+}) => {
   return (
     <div className="w-4/12 px-10 mt-10">
       <h1 className="text-2xl font-semibold border-b-2 border-gray-300 py-4">

@@ -31,7 +31,9 @@ function App() {
             Desired Result
           </h1>
           <div className="mt-8">
-            <Letters />
+            {isCheckBoxChecked.map((isChecked, index) =>
+              isChecked ? <Letters key={index} checkboxNumber={index} /> : null,
+            )}
           </div>
         </div>
       </div>

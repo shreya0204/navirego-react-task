@@ -10,7 +10,7 @@ const CheckBoxes: React.FC<CheckBoxesProps> = ({
   onCheckBoxChange,
 }) => {
   return (
-    <div className="w-4/12 px-10 mt-10">
+    <div className=" w-fit xl:w-4/12 px-10 mt-10">
       <h1 className="text-2xl font-semibold border-b-2 border-gray-300 py-4">
         Select checkbox from here
       </h1>

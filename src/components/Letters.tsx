@@ -1,46 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { fetchLetterFromAPI } from '../services/api';
 
-interface LetterDisplayProps {
+interface LettersProps {
   checkboxNumber: number;
   isActive: boolean;
 }
 
-const LetterDisplay: React.FC<LetterDisplayProps> = ({
+const LetterDisplay: React.FC<LettersProps> = ({
   checkboxNumber,
   isActive,
 }) => {
   const [letters, setLetters] = useState('');
 
   useEffect(() => {
-    let intervalId: any;
+    let intervalId: number;
 
-    const fetchLetter = async () => {
-      try {
-        const response = await fetch(
-          `https://navirego-interview-mc3narrsb-volodymyr-matselyukh.vercel.app/api/letters/${checkboxNumber}`,
-        );
-        const data = await response.json();
-        if (data.letter && typeof data.letter === 'string') {
-          console.log(data.letter);
-
-          setLetters((prevLetters) => {
-            return (prevLetters + data.letter).slice(-30);
-          });
-        } else {
-          console.error('Invalid response from the API:', data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch letter:', error);
+    const updateLetters = async () => {
+      const newLetter = await fetchLetterFromAPI(checkboxNumber);
+      if (newLetter) {
+        setLetters((prevLetters) => (prevLetters + newLetter).slice(-30));
       }
     };
 
     if (isActive) {
-      intervalId = setInterval(fetchLetter, 2000);
+      intervalId = window.setInterval(updateLetters, 2000);
     }
+
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
+      window.clearInterval(intervalId);
     };
   }, [checkboxNumber, isActive]);
 
@@ -51,4 +38,4 @@ const LetterDisplay: React.FC<LetterDisplayProps> = ({
   );
 };
 
-export default React.memo(LetterDisplay);
+export default LetterDisplay;

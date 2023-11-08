@@ -5,17 +5,26 @@ import { useState } from 'react';
 
 type CheckBoxState = {
   checked: boolean;
+  index: number;
 };
 
 function App() {
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState<CheckBoxState[]>(
-    Array.from({ length: 7 }, () => ({ checked: false })),
+    Array.from({ length: 7 }, () => ({ checked: false, index: 0 })),
   );
 
-  const handleCheckBoxChange = (index: number) => {
-    const newCheckBoxState = [...isCheckBoxChecked];
-    newCheckBoxState[index].checked = !newCheckBoxState[index].checked;
-    setIsCheckBoxChecked(newCheckBoxState);
+  const handleCheckBoxChange = (checkboxIndex: number) => {
+    setIsCheckBoxChecked((prevStates) =>
+      prevStates.map((state, index) => {
+        if (index === checkboxIndex) {
+          return {
+            ...state,
+            checked: !state.checked,
+          };
+        }
+        return state;
+      }),
+    );
   };
 
   return (
@@ -31,9 +40,13 @@ function App() {
             Desired Result
           </h1>
           <div className="mt-8">
-            {isCheckBoxChecked.map((isChecked, index) =>
-              isChecked ? <Letters key={index} checkboxNumber={index} /> : null,
-            )}
+            {isCheckBoxChecked.map((state) => (
+              <Letters
+                key={state.index}
+                checkboxNumber={state.index}
+                isActive={state.checked}
+              />
+            ))}
           </div>
         </div>
       </div>

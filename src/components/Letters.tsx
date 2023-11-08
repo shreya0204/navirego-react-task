@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import useFetchLetter from '../hooks/useFetchLetters';
 
 interface LettersProps {
@@ -19,4 +19,4 @@ const LetterDisplay: React.FC<LettersProps> = ({
   );
 };
 
-export default LetterDisplay;
+export default memo(LetterDisplay);

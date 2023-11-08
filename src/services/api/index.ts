@@ -1,5 +1,6 @@
 import { API_URL } from '../../constants/apiConstants';
 
+// This fetched the letter from the API
 export const fetchLetterFromAPI = async (
   checkboxNumber: number,
 ): Promise<string | null> => {

@@ -27,7 +27,9 @@ const LetterDisplay: React.FC<LettersProps> = ({
     }
 
     return () => {
-      window.clearInterval(intervalId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     };
   }, [checkboxNumber, isActive]);
 
